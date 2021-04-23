@@ -1,0 +1,1 @@
+void getCombination(int, bool &, bool &, bool &, bool &, bool &, bool &);

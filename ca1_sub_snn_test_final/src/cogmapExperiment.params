@@ -1,0 +1,229 @@
+parent.0 =                              ./ecj_boiler_plate.params
+
+##############################
+# Problem
+##############################
+eval.problem =                                  ec.app.command.CommandProblem
+eval.problem.command =                          ./cogmap-snn
+evalthreads = 				                    8
+seed.1 =				                        time
+seed.2 =				                        time
+seed.3 =				                        time
+seed.4 =				                        time
+seed.5 =				                        time
+seed.6 =				                        time
+seed.7 =				                        time
+seed.8 =				                        time
+
+##############################
+# Population Model
+##############################
+generations =									50
+quit-on-run-complete =			                false
+pop.subpop.0.size =			                    15
+breed =					                        ec.es.MuCommaLambdaBreeder
+es.mu.0 = 				                        3
+es.lambda.0 =                                   15
+
+##############################
+# Representation
+##############################
+pop.subpop.0.species =                          ec.vector.FloatVectorSpecies
+pop.subpop.0.species.fitness =		            ec.simple.SimpleFitness
+pop.subpop.0.species.ind =		                ec.vector.DoubleVectorIndividual
+pop.subpop.0.species.genome-size = 	            20
+pop.subpop.0.species.num-segments = 			10
+
+##############################
+# Operator Pipeline
+##############################
+pop.subpop.0.species.pipe = 		            ec.vector.breed.VectorMutationPipeline
+pop.subpop.0.species.pipe.source.0 = 	        ec.vector.breed.VectorCrossoverPipeline
+pop.subpop.0.species.pipe.source.0.source.0 =   ec.es.ESSelection
+pop.subpop.0.species.pipe.source.0.source.1 =   ec.es.ESSelection
+
+# Mutation parameters
+pop.subpop.0.species.mutation-type =            gauss
+pop.subpop.0.species.mutation-bounded =	        true
+pop.subpop.0.species.mutation-prob =            1.0
+pop.subpop.0.species.mutation-stdev =           0.5
+
+# Selection parameters
+select.tournament.size = 		                2
+
+# Set up our evolutionary algorithm
+# =========================
+pop.subpop.0.species.pipe.likelihood = 1.0
+pop.subpop.0.species.pipe.source.0.likelihood	= 0.9
+
+# Define the start positions of the indeces
+pop.subpop.0.species.segment-type = 		start
+	# ALPHA positive
+pop.subpop.0.species.segment.0.start = 		0
+	# ALPHA negative
+pop.subpop.0.species.segment.1.start = 		3
+	# TAU LTP/DELTA
+pop.subpop.0.species.segment.2.start = 		6
+	# HOMEOSTASIS R-Inh
+pop.subpop.0.species.segment.3.start = 		12
+	# MAX WGHT (INP-EXC)
+pop.subpop.0.species.segment.4.start =		13
+	# MAX WGHT (INP-INH)
+pop.subpop.0.species.segment.5.start =		14
+	# MAX WGHT (EXC-EXC)
+pop.subpop.0.species.segment.6.start =		15
+	# MAX WGHT (INH-EXC)
+pop.subpop.0.species.segment.7.start =		16
+	# HOMEO T 
+pop.subpop.0.species.segment.8.start =		17
+	# HOMEOSTASIS R-Exc
+pop.subpop.0.species.segment.9.start = 		19
+
+
+######## Alpha positive ##########
+pop.subpop.0.species.segment.0.min-gene = 		0
+pop.subpop.0.species.segment.0.max-gene =		4e-3
+
+######## Alpha negative ##########
+pop.subpop.0.species.segment.1.min-gene = 		-4e-3
+pop.subpop.0.species.segment.1.max-gene =		0
+
+######## Tau LTP ##########
+pop.subpop.0.species.segment.2.min-gene = 		5.0
+pop.subpop.0.species.segment.2.max-gene =		100.0
+
+######## Homeostasis R-Inh ############
+
+# base FR
+pop.subpop.0.species.segment.3.min-gene =		5.0
+pop.subpop.0.species.segment.3.max-gene =		20.0
+
+######## MAX WGHT ############
+
+# Inp-Exc
+pop.subpop.0.species.segment.4.min-gene =		.01
+pop.subpop.0.species.segment.4.max-gene =		1.0
+
+# Inp-Inh
+pop.subpop.0.species.segment.5.min-gene =		.01
+pop.subpop.0.species.segment.5.max-gene =		1.0
+
+# Exc-Exc
+pop.subpop.0.species.segment.6.min-gene =		0.001
+pop.subpop.0.species.segment.6.max-gene =		1.0
+
+# Inh-Exc
+pop.subpop.0.species.segment.7.min-gene =		0.001
+pop.subpop.0.species.segment.7.max-gene =		1.0
+
+# HOMEO T
+pop.subpop.0.species.segment.8.min-gene =		0.1
+pop.subpop.0.species.segment.8.max-gene =		10.0
+
+######## Homeostasis R-Exc ############
+
+# base FR
+pop.subpop.0.species.segment.9.min-gene =		2.0
+pop.subpop.0.species.segment.9.max-gene =		10.0
+
+############# DEFAULTS #############################
+
+pop.subpop.0.species.min-gene =         		-100
+pop.subpop.0.species.max-gene =         		100
+
+pop.subpop.0.species.mutation-type =    gauss
+pop.subpop.0.species.mutation-stdev =   0.3
+pop.subpop.0.species.mutation-bounded = true
+pop.subpop.0.species.mutation-prob =    0.5
+# Crossover parameters
+pop.subpop.0.species.crossover-likelihood = 0.5
+pop.subpop.0.species.crossover-type =   two
+
+############### STD DEVIATION/MUTATION ######################
+
+pop.subpop.0.species.segment.0.mutation-type =    gauss
+pop.subpop.0.species.segment.0.mutation-stdev =   0.0004
+pop.subpop.0.species.segment.0.mutation-bounded = true
+pop.subpop.0.species.segment.0.mutation-prob =    0.5
+pop.subpop.0.species.segment.0.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.0.crossover-type =   two
+
+pop.subpop.0.species.segment.1.mutation-type =    gauss
+pop.subpop.0.species.segment.1.mutation-stdev =   0.0004
+pop.subpop.0.species.segment.1.mutation-bounded = true
+pop.subpop.0.species.segment.1.mutation-prob =    0.5
+pop.subpop.0.species.segment.1.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.1.crossover-type =   two
+
+pop.subpop.0.species.segment.2.mutation-type =    gauss
+pop.subpop.0.species.segment.2.mutation-stdev =   9.5
+pop.subpop.0.species.segment.2.mutation-bounded = true
+pop.subpop.0.species.segment.2.mutation-prob =    0.5
+pop.subpop.0.species.segment.2.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.2.crossover-type =   two
+
+pop.subpop.0.species.segment.3.mutation-type =    gauss
+pop.subpop.0.species.segment.3.mutation-stdev =   1.5
+pop.subpop.0.species.segment.3.mutation-bounded = true
+pop.subpop.0.species.segment.3.mutation-prob =    0.5
+pop.subpop.0.species.segment.3.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.3.crossover-type =   two
+
+pop.subpop.0.species.segment.4.mutation-type =    gauss
+pop.subpop.0.species.segment.4.mutation-stdev =   0.099
+pop.subpop.0.species.segment.4.mutation-bounded = true
+pop.subpop.0.species.segment.4.mutation-prob =    0.5
+pop.subpop.0.species.segment.4.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.4.crossover-type =   two
+
+pop.subpop.0.species.segment.5.mutation-type =    gauss
+pop.subpop.0.species.segment.5.mutation-stdev =   0.099
+pop.subpop.0.species.segment.5.mutation-bounded = true
+pop.subpop.0.species.segment.5.mutation-prob =    0.5
+pop.subpop.0.species.segment.5.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.5.crossover-type =   two
+
+pop.subpop.0.species.segment.6.mutation-type =    gauss
+pop.subpop.0.species.segment.6.mutation-stdev =   0.0999
+pop.subpop.0.species.segment.6.mutation-bounded = true
+pop.subpop.0.species.segment.6.mutation-prob =    0.5
+pop.subpop.0.species.segment.6.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.6.crossover-type =   two
+
+pop.subpop.0.species.segment.7.mutation-type =    gauss
+pop.subpop.0.species.segment.7.mutation-stdev =   0.0999
+pop.subpop.0.species.segment.7.mutation-bounded = true
+pop.subpop.0.species.segment.7.mutation-prob =    0.5
+pop.subpop.0.species.segment.7.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.7.crossover-type =   two
+
+pop.subpop.0.species.segment.8.mutation-type =    gauss
+pop.subpop.0.species.segment.8.mutation-stdev =   0.99
+pop.subpop.0.species.segment.8.mutation-bounded = true
+pop.subpop.0.species.segment.8.mutation-prob =    0.5
+pop.subpop.0.species.segment.8.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.8.crossover-type =   two
+
+pop.subpop.0.species.segment.10.mutation-type =    gauss
+pop.subpop.0.species.segment.10.mutation-stdev =   0.8
+pop.subpop.0.species.segment.10.mutation-bounded = true
+pop.subpop.0.species.segment.10.mutation-prob =    0.5
+pop.subpop.0.species.segment.10.crossover-likelihood = 0.6
+pop.subpop.0.species.segment.10.crossover-type =   two
+
+# Set up external fitness evaluation
+# =========================
+
+eval.problem.objective.idealFitnessValue = 295
+eval.problem.objective =                ecjapp.eval.problem.objective.StringToDoubleObjective
+eval.problem.dynamicArguments = 		ecjapp.eval.problem.GenerationDynamicArguments
+eval.problem.dynamicArguments.option =  -gen
+
+##############################
+# Logging
+##############################
+stat = ec.simple.SimpleStatistics
+stat.file = $out.stat
+stat.do-per-generation-description = true
+stat.do-description = true
+stat.gather-full=true
