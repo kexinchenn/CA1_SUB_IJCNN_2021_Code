@@ -5,8 +5,7 @@ c2 = [128 193 219]./255;    % Blue theme
 colors = [c1;c2];
 %% FIGURE 3: Network Fitness
 addpath stdshade.m
-resRootDir = '~/Downloads/IJCNN_2021_Code/matlab_analysis_scripts/data/';
-% resRootDir = 'data/';
+resRootDir = 'data/';
 names = {'hpc', 'sub'};
 fitFile = 'UnlesionedFitnessScores.csv';
 numI = 15;
